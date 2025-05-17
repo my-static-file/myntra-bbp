@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> Hack </title>
+  
+  <style>
+    input.large-input {
+      width: 100%;
+      max-width: 800px;
+      padding: 12px 14px;
+      font-size: 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    
+    input.large-input:focus {
+      outline: none;
+      border-color: #007BFF;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    }
+    
+    input.large-input::placeholder {
+      color: #999;
+      font-style: italic;
+    }
+    
+    #btn {
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <input type="text" id="in" class="large-input">
+  <button id="btn"> Go </button>
+  <script>
+    const inp = document.getElementById("in");
+    const btn = document.getElementById("btn");
+    
+    function encode(input) {
+      return Array.from(input).map(char => {
+        return '%' + char.charCodeAt(0).toString(16).toUpperCase().padStart(2, '0');
+      }).join('');
+    }
+    
+    function use(x) {
+      let loc = `//www.myntra.com/${x}?rawQuery=${"case"}`;
+      window.location.assign(loc);
+    }
+    
+    btn.addEventListener("click", e => {
+      const x = encode(inp.value);
+      use(x)
+    });
+  </script>
+  
+</body>
+
+</html>
